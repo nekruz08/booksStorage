@@ -1,0 +1,58 @@
+POST https://auth-book.herokuapp.com/api/tokens
+Content-Type: application/json
+
+{
+  "username": "firuz",
+  "password": "pass"
+}
+
+> {% client.global.set("auth_token", response.body.token); %}
+
+###
+
+POST https://auth-book.herokuapp.com/api/users/0
+Authorization: Bearer {{auth_token}}
+Content-Type: application/json
+
+{
+  "username": "behruz",
+  "password": "pass"
+}
+
+###
+
+POST https://auth-book.herokuapp.com/api/tokens
+Content-Type: application/json
+
+{
+  "username": "nekruz",
+  "password": "pass"
+}
+
+> {% client.global.set("auth_token", response.body.token); %}
+
+###
+
+GET http://localhost:9999/api/products
+Authorization: Bearer {{auth_token}}
+
+###
+
+POST http://localhost:9999/api/products/0
+Authorization: Bearer {{auth_token}}
+Content-Type: application/json
+
+{
+  "name": "The great Getsbydasdwede",
+  "description": "about history",
+  "price": 5,
+  "pic": "848"
+}
+
+###
+
+DELETE http://localhost:9999/api/products/2
+Authorization: Bearer {{auth_token}}
+
+###
+

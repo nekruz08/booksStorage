@@ -1,0 +1,10 @@
+version: '3.7'
+services:
+  db:
+    image: postgres:10
+    ports:
+      - 5430:5432
+    environment:
+      - POSTGRES_PASSWORD=pass
+      - POSTGRES_USER=user
+      - POSTGRES_DB=books
